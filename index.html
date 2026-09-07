@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Natasya Ramadhani | Portfolio</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+    <!-- ===== INCLUDE SEMUA SECTION ===== -->
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Home -->
+        <section id="home" class="section-home"></section>
+        
+        <!-- About -->
+        <section id="about" class="section-about"></section>
+        
+        <!-- CV -->
+        <section id="cv" class="section-cv"></section>
+        
+        <!-- Portfolio -->
+        <section id="portfolio" class="section-portfolio"></section>
+        
+        <!-- Gallery -->
+        <section id="gallery" class="section-gallery"></section>
+        
+        <!-- Social Media -->
+        <section id="social" class="section-social"></section>
+        
+        <!-- Contact -->
+        <section id="contact" class="section-contact"></section>
+        
+        <!-- Testimoni -->
+        <section id="testimoni" class="section-testimoni"></section>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script src="js/main.js"></script>
+
+    <!-- Load Sections -->
+    <script>
+        // Fungsi untuk memuat file HTML per section
+        function loadSection(elementId, filePath) {
+            fetch(filePath)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(elementId).innerHTML = data;
+                })
+                .catch(error => console.error('Error loading section:', error));
+        }
+
+        // Muat semua section
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSection('navbar-container', 'sections/navbar.html');
+            loadSection('home', 'sections/home.html');
+            loadSection('about', 'sections/about.html');
+            loadSection('cv', 'sections/cv.html');
+            loadSection('portfolio', 'sections/portfolio.html');
+            loadSection('gallery', 'sections/gallery.html');
+            loadSection('social', 'sections/social.html');
+            loadSection('contact', 'sections/contact.html');
+            loadSection('testimoni', 'sections/testimoni.html');
+            loadSection('footer-container', 'sections/footer.html');
+        });
+    </script>
+</body>
+</html>

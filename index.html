@@ -1,84 +1,667 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Natasya Ramadhani | Portfolio</title>
-    
-    <!-- Fonts & Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Natasya Ramadhani | Portfolio</title>
+  <!-- Font & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(145deg, #f9f0ff 0%, #fce4f0 100%);
+      color: #2d2a3e;
+      line-height: 1.6;
+      padding: 0 1rem;
+    }
+
+    /* GLASSMORPHISM & UTILITY */
+    .glass {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 32px;
+      box-shadow: 0 8px 32px rgba(180, 140, 200, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #c9b1ff, #f5b8d0);
+      color: #2d2a3e;
+      padding: 0.8rem 2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 6px 18px rgba(180, 130, 200, 0.25);
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(180, 130, 200, 0.4);
+      background: linear-gradient(135deg, #d8c4ff, #fcc8dc);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #b7a0d4;
+      color: #3d2e5c;
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      background: rgba(200, 175, 230, 0.2);
+      border-color: #a284c7;
+      transform: translateY(-3px);
+    }
+
+    .section-title {
+      font-size: 2.6rem;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #8b6eb0, #d48fb0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.8rem;
+      display: inline-block;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: "✦";
+      font-size: 1.6rem;
+      margin-left: 10px;
+      color: #b89ed4;
+      -webkit-text-fill-color: #b89ed4;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: sticky;
+      top: 20px;
+      z-index: 999;
+      padding: 0.7rem 2rem;
+      margin: 0 auto 2rem;
+      max-width: 1280px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 247, 255, 0.35);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-radius: 60px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 8px 32px rgba(160, 130, 190, 0.08);
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.4rem;
+      background: linear-gradient(135deg, #9b7fc0, #e7a6c4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      list-style: none;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #3d2e5c;
+      font-size: 1rem;
+      transition: 0.2s;
+      padding: 0.3rem 0.2rem;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-links a:hover {
+      color: #7a5b9e;
+      border-bottom-color: #b69ad4;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      color: #4d3a6b;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding: 1rem 0 3rem;
+    }
+
+    .hero-content {
+      flex: 1 1 400px;
+    }
+
+    .hero-content .greeting {
+      font-size: 1.2rem;
+      font-weight: 300;
+      letter-spacing: 2px;
+      color: #7a629b;
+    }
+
+    .hero-content h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0.5rem 0 0.2rem;
+      background: linear-gradient(135deg, #6d4d94, #c27b9e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-content .sub {
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: #5d4a78;
+      margin-bottom: 0.2rem;
+    }
+
+    .hero-content .desc {
+      margin: 1rem 0 1.8rem;
+      max-width: 480px;
+      color: #413353;
+      font-weight: 400;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-image {
+      flex: 1 1 280px;
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-image .profile-pic {
+      width: 280px;
+      height: 280px;
+      border-radius: 40% 60% 40% 60% / 60% 40% 60% 40%;
+      object-fit: cover;
+      box-shadow: 0 20px 40px rgba(150, 110, 190, 0.25);
+      border: 4px solid rgba(255, 255, 255, 0.6);
+      background: #e7d4f5;
+    }
+
+    .glow-bg {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle at 30% 30%, #dbb6f0, #f5bedb, #b7d4f0);
+      filter: blur(60px);
+      opacity: 0.4;
+      z-index: -1;
+      border-radius: 50%;
+      animation: softGlow 8s infinite alternate;
+    }
+
+    @keyframes softGlow {
+      0% { transform: scale(0.95); opacity: 0.3; }
+      100% { transform: scale(1.2); opacity: 0.5; }
+    }
+
+    .deco {
+      font-size: 1.6rem;
+      color: #c9addb;
+      letter-spacing: 6px;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .about-img img {
+      width: 100%;
+      max-width: 320px;
+      border-radius: 40px 20px 40px 20px;
+      box-shadow: 0 20px 32px rgba(140, 110, 180, 0.15);
+      border: 3px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .info-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .info-card {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      padding: 0.8rem 1.2rem;
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .info-card strong {
+      display: block;
+      font-weight: 600;
+      color: #5b4579;
+    }
+
+    .fun-facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.5rem;
+      margin-top: 1.2rem;
+    }
+
+    .fun-facts span {
+      background: rgba(210, 185, 235, 0.2);
+      padding: 0.3rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    /* CV */
+    .cv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+    }
+
+    .cv-card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      padding: 1.8rem;
+      border-radius: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .cv-card h3 {
+      color: #674a89;
+      margin-bottom: 1.2rem;
+      font-size: 1.4rem;
+      border-left: 5px solid #b89ed4;
+      padding-left: 1rem;
+    }
+
+    .timeline-item {
+      margin-bottom: 1.8rem;
+      padding-left: 1rem;
+      border-left: 2px dashed #c1a8db;
+    }
+
+    .timeline-item .year {
+      font-weight: 600;
+      color: #7f62a3;
+    }
+
+    .progress-item {
+      margin: 0.8rem 0;
+    }
+    .progress-item span {
+      display: flex;
+      justify-content: space-between;
+    }
+    .progress-bar {
+      background: #e6d9f0;
+      height: 8px;
+      border-radius: 20px;
+      margin-top: 4px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: 20px;
+      background: linear-gradient(90deg, #b294d0, #e6add0);
+    }
+
+    /* PORTFOLIO GRID */
+    .portfolio-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-bottom: 2rem;
+    }
+    .filter-btn {
+      background: transparent;
+      border: 1px solid #cbb2e0;
+      padding: 0.4rem 1.4rem;
+      border-radius: 40px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: #dcc3f0;
+      border-color: #a785c9;
+      color: #2d1f45;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 2rem;
+    }
+
+    .portfolio-card {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      border-radius: 28px;
+      overflow: hidden;
+      transition: 0.3s;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .portfolio-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 20px 40px rgba(140, 110, 180, 0.15);
+    }
+    .portfolio-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      transition: 0.3s;
+    }
+    .portfolio-card:hover img {
+      transform: scale(1.04);
+    }
+    .portfolio-info {
+      padding: 1rem 1.2rem 1.4rem;
+    }
+
+    /* GALLERY */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1.2rem;
+    }
+    .gallery-item {
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(150, 120, 180, 0.08);
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      transition: 0.3s;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* SOCIAL + CONTACT */
+    .social-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      justify-content: center;
+    }
+    .social-card {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      padding: 1.5rem 2rem;
+      border-radius: 40px;
+      min-width: 140px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.3);
+      transition: 0.25s;
+    }
+    .social-card:hover {
+      transform: translateY(-8px);
+      background: rgba(255, 240, 255, 0.3);
+    }
+    .social-card i {
+      font-size: 2.2rem;
+      color: #7d5d9e;
+      margin-bottom: 0.4rem;
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 0.8rem 1.2rem;
+      margin: 0.5rem 0;
+      border-radius: 40px;
+      border: 1px solid rgba(200, 180, 220, 0.4);
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(4px);
+      font-family: 'Quicksand', sans-serif;
+    }
+    .contact-form textarea {
+      border-radius: 28px;
+      min-height: 100px;
+    }
+
+    /* TESTIMONI */
+    .testimoni-grid {
+      display: flex;
+      gap: 2rem;
+      overflow-x: auto;
+      padding: 1rem 0.2rem;
+      scroll-snap-type: x mandatory;
+    }
+    .testimoni-card {
+      flex: 0 0 280px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      padding: 1.8rem;
+      border-radius: 40px;
+      border: 1px solid rgba(255,255,255,0.2);
+      scroll-snap-align: start;
+    }
+
+    /* FOOTER */
+    .footer {
+      margin-top: 4rem;
+      padding: 2.5rem 1.5rem;
+      border-radius: 40px 40px 0 0;
+      background: linear-gradient(135deg, #efe4ff, #fadce8);
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.4);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: rgba(255,247,255,0.6);
+        backdrop-filter: blur(20px);
+        border-radius: 40px;
+        padding: 1.5rem 0;
+        margin-top: 1rem;
+      }
+      .nav-links.open {
+        display: flex;
+      }
+      .hamburger {
+        display: block;
+      }
+      .navbar {
+        flex-wrap: wrap;
+      }
+      .hero-content h1 {
+        font-size: 2.6rem;
+      }
+      .about-grid, .cv-grid, .contact-wrap {
+        grid-template-columns: 1fr;
+      }
+      .info-cards {
+        grid-template-columns: 1fr 1fr;
+      }
+      .hero-image .profile-pic {
+        width: 220px;
+        height: 220px;
+      }
+    }
+    @media (max-width: 480px) {
+      .info-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">✦ NATA</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">Tentang Saya</a></li>
+    <li><a href="#cv">CV</a></li>
+    <li><a href="#portfolio">Hasil Karya</a></li>
+    <li><a href="#gallery">Galeri</a></li>
+    <li><a href="#social">Media Sosial</a></li>
+    <li><a href="#contact">Kontak</a></li>
+    <li><a href="#testimoni">Testimoni</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+</nav>
 
-    <!-- ===== INCLUDE SEMUA SECTION ===== -->
-    <!-- Navbar -->
-    <div id="navbar-container"></div>
+<div class="container">
+  <!-- HOME -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <div class="greeting">HELLO, I'M</div>
+      <h1>NATASYA RAMADHANI</h1>
+      <div class="sub">Student of Office Management</div>
+      <div style="font-size:0.9rem; color:#6b518b; letter-spacing:1px;">Welcome to My Personal Portfolio</div>
+      <p class="desc">Halo! Saya seorang siswi SMK yang tertarik pada dunia administrasi, desain, teknologi, dan pengembangan diri. Website ini berisi profil, pengalaman, karya, serta perjalanan saya.</p>
+      <div class="hero-buttons">
+        <a href="#about" class="btn">Tentang Saya</a>
+        <a href="#portfolio" class="btn btn-outline">Lihat Karya</a>
+      </div>
+      <div class="deco">✦ ✧ ♡ ⋆ ˚｡⋆</div>
+    </div>
+    <div class="hero-image">
+      <div class="glow-bg"></div>
+      <img class="profile-pic" src="https://placehold.co/400x400/e5d4f5/b7a0d4?text=NATA" alt="Foto Natasya" />
+    </div>
+  </section>
 
-    <!-- Main Content -->
-    <main class="container">
-        <!-- Home -->
-        <section id="home" class="section-home"></section>
-        
-        <!-- About -->
-        <section id="about" class="section-about"></section>
-        
-        <!-- CV -->
-        <section id="cv" class="section-cv"></section>
-        
-        <!-- Portfolio -->
-        <section id="portfolio" class="section-portfolio"></section>
-        
-        <!-- Gallery -->
-        <section id="gallery" class="section-gallery"></section>
-        
-        <!-- Social Media -->
-        <section id="social" class="section-social"></section>
-        
-        <!-- Contact -->
-        <section id="contact" class="section-contact"></section>
-        
-        <!-- Testimoni -->
-        <section id="testimoni" class="section-testimoni"></section>
-    </main>
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-grid">
+      <div class="about-img">
+        <img src="https://placehold.co/400x500/f2e6fa/cbb2e0?text=+FOTO+" alt="Foto pribadi" />
+      </div>
+      <div>
+        <p style="font-size:1.2rem; font-weight:500;">Perkenalan singkat</p>
+        <div class="info-cards">
+          <div class="info-card"><strong>Nama</strong> NATASYA RAMADHANI</div>
+          <div class="info-card"><strong>Panggilan</strong> NATA</div>
+          <div class="info-card"><strong>Sekolah</strong> SMK NEGERI 42 JAKARTA</div>
+          <div class="info-card"><strong>Jurusan</strong> Manajemen Perkantoran</div>
+          <div class="info-card"><strong>Kelas</strong> X-MP2</div>
+          <div class="info-card"><strong>Hobi</strong> Mendengarkan musik & membaca novel</div>
+          <div class="info-card" style="grid-column: span 2;"><strong>Cita-cita</strong> Menjadi sekretaris perusahaan</div>
+        </div>
+        <div class="fun-facts">
+          <span>♡ Suka kopi</span>
+          <span>✦ Paling suka warna ungu</span>
+          <span>✧ 3 bahasa: Indonesia, Inggris, Jepang (pemula)</span>
+          <span>⋆ Pernah jadi ketua kelas</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <div id="footer-container"></div>
+  <!-- CV -->
+  <section id="cv">
+    <h2 class="section-title">CV / Curriculum Vitae</h2>
+    <div class="cv-grid">
+      <div class="cv-card"><h3>📘 Profile & Education</h3>
+        <div class="timeline-item"><span class="year">2026 — Sekarang</span><br><strong>SMK NEGERI 42 JAKARTA</strong><br>Jurusan Manajemen Perkantoran</div>
+        <div class="timeline-item"><span class="year">2023 — 2026</span><br><strong>SMP BINA INSAN</strong><br>IPS</div>
+        <h3 style="margin-top:2rem;">🏅 Achievement</h3>
+        <div>• Juara 1 lomba administrasi</div>
+        <div>• Siswi teladan 2025</div>
+      </div>
+      <div class="cv-card"><h3>⚡ Skills</h3>
+        <div class="progress-item"><span>Microsoft Word <span>85%</span></span><div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div></div>
+        <div class="progress-item"><span>Microsoft Excel <span>70%</span></span><div class="progress-bar"><div class="progress-fill" style="width:70%"></div></div></div>
+        <div class="progress-item"><span>Canva <span>80%</span></span><div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div></div>
+        <div class="progress-item"><span>Public Speaking <span>75%</span></span><div class="progress-bar"><div class="progress-fill" style="width:75%"></div></div></div>
+        <div class="progress-item"><span>Teamwork <span>90%</span></span><div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div></div>
+        <div class="progress-item"><span>Time Management <span>78%</span></span><div class="progress-bar"><div class="progress-fill" style="width:78%"></div></div></div>
+        <div style="margin-top:1.5rem;"><h3>🌐 Language</h3> Indonesia (native), Inggris (aktif), Jepang (pemula)</div>
+        <div style="margin-top:1rem;"><a href="#" class="btn" style="font-size:0.9rem; padding:0.5rem 2rem;">⬇️ Download CV</a></div>
+      </div>
+    </div>
+  </section>
 
-    <!-- ===== JAVASCRIPT ===== -->
-    <script src="js/main.js"></script>
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <h2 class="section-title">My Creative Works</h2>
+    <div class="portfolio-filter">
+      <span class="filter-btn active">ALL</span>
+      <span class="filter-btn">DESIGN</span>
+      <span class="filter-btn">SCHOOL PROJECT</span>
+      <span class="filter-btn">POSTER</span>
+      <span class="filter-btn">PRESENTATION</span>
+      <span class="filter-btn">OTHER</span>
+    </div>
+    <div class="portfolio-grid">
+      <div class="portfolio-card"><img src="https://placehold.co/400x300/dbc8f0/b7a0d4?text=Karya+1" alt="project"/><div class="portfolio-info"><h4>Poster Lingkungan</h4><p>Poster • 2025</p><p style="font-size:0.8rem;">Desain poster untuk lomba</p><a href="#" class="btn" style="font-size:0.8rem; padding:0.3rem 1.4rem;">View Project</a></div></div>
+      <div class="portfolio-card"><img src="https://placehold.co/400x300/f0dae8/d4aac4?text=Karya+2" alt="project"/><div class="portfolio-info"><h4>Presentasi Digital</h4><p>School Project • 2026</p><p style="font-size:0.8rem;">Presentasi Manajemen</p><a href="#" class="btn" style="font-size:0.8rem; padding:0.3rem 1.4rem;">View Project</a></div></div>
+      <div class="portfolio-card"><img src="https://placehold.co/400x300/d6c4ed/c3aadc?text=Karya+3" alt="project"/><div class="portfolio-info"><h4>Branding UMKM</h4><p>DESIGN • 2025</p><p style="font-size:0.8rem;">Identitas visual</p><a href="#" class="btn" style="font-size:0.8rem; padding:0.3rem 1.4rem;">View Project</a></div></div>
+    </div>
+  </section>
 
-    <!-- Load Sections -->
-    <script>
-        // Fungsi untuk memuat file HTML per section
-        function loadSection(elementId, filePath) {
-            fetch(filePath)
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById(elementId).innerHTML = data;
-                })
-                .catch(error => console.error('Error loading section:', error));
-        }
-
-        // Muat semua section
-        document.addEventListener('DOMContentLoaded', function() {
-            loadSection('navbar-container', 'sections/navbar.html');
-            loadSection('home', 'sections/home.html');
-            loadSection('about', 'sections/about.html');
-            loadSection('cv', 'sections/cv.html');
-            loadSection('portfolio', 'sections/portfolio.html');
-            loadSection('gallery', 'sections/gallery.html');
-            loadSection('social', 'sections/social.html');
-            loadSection('contact', 'sections/contact.html');
-            loadSection('testimoni', 'sections/testimoni.html');
-            loadSection('footer-container', 'sections/footer.html');
-        });
-    </script>
-</body>
-</html>
+  <!-- GALERI -->
+  <section id="gallery">
+    <h2 class="section-title">My Gallery</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item"><img src="https://placehold.co/300x300/dbc0ed/b89ed4?text=School" alt="school"/></div>
+      <div class="gallery-item"><img src="https://placehold.co/300x300/e6c8de/cf9fb8?text=Activity" alt="activity"/></div>
+      <div class="gallery-item"><img src="https://placehold.co/300x300/cdb8e6/b396cc?text=Project" alt="project"/></div>
+      <div class="gallery-item"><img src="https://placehold.co/300x300/f5d8e8/ddafc7?text=Memory" alt="memory"/></div>
+    </div>
+    <div style="display:flex; gap:1.5rem; flex-wrap:wrap; margin-top:2rem;">
+      <div class="gallery-item" style="flex:1; min-width:160px;"><img src="https://placehold.co/400x220/e3cef5/bc9fd6?text=Video+1" alt="video thumb"/><p style="padding:0.5rem;"><i class="fas fa-play-circle"></i> Video Projek</
